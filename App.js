@@ -1,28 +1,22 @@
+import * as React from "react";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-export default function App() {
+import Login from "./screens/Login";
+import Register from "./screens/Register";
+
+const stack = createNativeStackNavigator;
+
+function App() {
     return (
-        <SafeAreaView style={styles.container}>
-            <View style={styles.container}>
-                <TextInput
-                    style={styles.TextInput}
-                    placeholder="Coba Masukin nama kamu"
-                    type
-                ></TextInput>
-                <TextInput
-                    style={styles.TextInput1}
-                    placeholder="Masukin Password nya ya"
-                    secureTextEntry
-                ></TextInput>
-                <TouchableOpacity style={styles.button}>
-                    <Text style={{ color: "white", textAlign: "center" }}>Gass Kann!</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.button}>
-                    <Text style={{ color: "white", textAlign: "center" }}>Sabar Register dulu</Text>
-                </TouchableOpacity>
-            </View>
-        </SafeAreaView>
+        <NavigationContainer>
+            <stack.Navigator screenOptions={{ headerShown: false }}>
+                <stack.Screen name="Login" component={Login}></stack.Screen>
+                <stack.Screen name="Register" component={Register}></stack.Screen>
+            </stack.Navigator>
+        </NavigationContainer>
     );
 }
 
@@ -65,3 +59,5 @@ const styles = StyleSheet.create({
         marginBottom: 40,
     },
 });
+
+export default App;
